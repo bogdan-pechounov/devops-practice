@@ -5,3 +5,5 @@ docker exec -it node-app bash
 
 %cd%:/app
 docker run --name node-app -p 3000:3000 -v %cd%:/app node-app-image
+
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
