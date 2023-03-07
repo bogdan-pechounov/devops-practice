@@ -4,6 +4,7 @@ const session = require('express-session')
 const redis = require('redis')
 const RedisStore = require('connect-redis').default
 const config = require('./config/config')
+const cors = require('cors')
 
 const postRouter = require('./routes/postRoutes')
 const userRouter = require('./routes/userRoutes')
@@ -35,6 +36,7 @@ mongoose
 //middleware
 app.use(express.json())
 app.enable('trust proxy')
+app.use(cors())
 app.use(
   session({
     store: redisStore,
