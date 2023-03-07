@@ -34,6 +34,7 @@ mongoose
 
 //middleware
 app.use(express.json())
+app.enable('trust proxy')
 app.use(
   session({
     store: redisStore,
@@ -49,7 +50,7 @@ app.use(
 )
 
 //routes
-app.get('/', (req, res) => {
+app.get('/api/v1', (req, res) => {
   res.send('<h1>Hello there3!!!</h1>')
 })
 app.use('/api/v1/posts', postRouter)
