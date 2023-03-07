@@ -12,9 +12,11 @@ services:
       - NODE_ENV=development
       - MONGO_USER=user
       - MONGO_PASSWORD=password
+      - SESSION_SECRET=secret
     command: npm run dev
     
   mongo:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=password
+
