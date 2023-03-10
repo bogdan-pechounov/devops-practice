@@ -1,0 +1,6 @@
+docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
+
+docker run --name mongo-1 -p 27017:27017 mongo
+docker run --name mongo-2 -p 27018:27017 mongo
+
+docker run --name mongo-1 -p 127.0.0.1:27017:27017 mongo
