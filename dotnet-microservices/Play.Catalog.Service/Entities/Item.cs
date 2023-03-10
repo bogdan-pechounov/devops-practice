@@ -1,3 +1,4 @@
+using Play.Common;
 
 public class Item : IEntity
 {

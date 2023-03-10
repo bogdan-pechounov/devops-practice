@@ -1,6 +1,4 @@
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Driver;
+using Play.Common.MongoDB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,16 +17,8 @@ builder.Services.AddMvc(options =>
 // BsonSerializer.RegisterSerializer(new GuidSerializer(MongoDB.Bson.BsonType.String));
 // BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(MongoDB.Bson.BsonType.String));
 
-var serviceSetings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
-
-builder.Services.AddSingleton(serviceProvider =>
-{
-  var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDBSettings)).Get<MongoDBSettings>();
-  var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-  return mongoClient.GetDatabase(serviceSetings.ServiceName);
-});
-
-builder.Services.AddSingleton<IItemsRepository, ItemsRepository>();
+builder.Services.AddMongo();
+builder.Services.AddMongoRepository<Item>("items");
 
 var app = builder.Build();
 
