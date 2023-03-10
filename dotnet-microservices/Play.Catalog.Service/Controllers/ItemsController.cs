@@ -4,7 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 [Route("items")]
 public class ItemsController : ControllerBase
 {
-  private readonly ItemsRepository itemsRepository = new();
+  private readonly IItemsRepository itemsRepository;
+
+  public ItemsController(IItemsRepository itemsRepository)
+  {
+    this.itemsRepository = itemsRepository;
+  }
 
   [HttpGet]
   public async Task<IEnumerable<ItemDto>> GetAsync()
